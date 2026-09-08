@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# AI answer engines are allowed on purpose: this site is the only Azerbaijani
+# source for these instruments, so being quotable is a win, not a leak.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://anla.pages.dev/sitemap.xml

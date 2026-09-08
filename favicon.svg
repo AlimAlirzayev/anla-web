@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="ANLA">
+  <rect width="32" height="32" rx="7" fill="#16151A"/>
+  <rect x="6"  y="7"  width="14" height="3.2" rx="1.6" fill="#D9622B"/>
+  <rect x="6"  y="12" width="20" height="3.2" rx="1.6" fill="#1F8F6B"/>
+  <rect x="6"  y="17" width="17" height="3.2" rx="1.6" fill="#2F6BD0"/>
+  <rect x="6"  y="22" width="11" height="3.2" rx="1.6" fill="#7B4BC9"/>
+</svg>

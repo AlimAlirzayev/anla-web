@@ -1,0 +1,107 @@
+{
+  "instrument": "IPIP Big-Five Factor Markers (50 items)",
+  "author": "Goldberg, L. R. (1992)",
+  "source": "https://ipip.ori.org/ — public domain, no licence required",
+  "language": "az",
+  "scale": {
+    "min": 1,
+    "max": 5,
+    "labels": [
+      "Tamamilə yanlışdır",
+      "Bir qədər yanlışdır",
+      "Nə doğru, nə yanlış",
+      "Bir qədər doğrudur",
+      "Tamamilə doğrudur"
+    ],
+    "short": ["Yanlış", "Az yanlış", "Ortada", "Az doğru", "Doğru"]
+  },
+  "traits": {
+    "E": {
+      "name": "Ekstraversiya",
+      "subtitle": "Ünsiyyət və enerji",
+      "high": "İnsanların arasında enerji toplayırsan. Söhbətə sən başlayırsan, diqqət mərkəzində olmaq səni yormur.",
+      "mid": "Nə tam ünsiyyətcil, nə tam qapalı. Şəraitə görə həm izdihamda, həm tək qalanda özünü rahat hiss edirsən.",
+      "low": "Enerjini təklikdə bərpa edirsən. Az adamla dərin söhbəti çox adamla səthi söhbətdən üstün tutursan."
+    },
+    "A": {
+      "name": "Uzlaşma",
+      "subtitle": "Xeyirxahlıq və empatiya",
+      "high": "Başqalarının hissləri sənə tez çatır. Münaqişədən çox razılığı seçirsən, insanlar yanında rahatlaşır.",
+      "mid": "Empatiya var, amma hüdud da var. Kömək edirsən, lakin hər dəfə öz mənafeyini arxaya atmırsan.",
+      "low": "Emosiyadan çox məntiqə güvənirsən. Xoş görünmək üçün fikrini dəyişmirsən, bu isə bəzən kəskin səslənir."
+    },
+    "C": {
+      "name": "Məsuliyyət",
+      "subtitle": "Nizam və özünüidarə",
+      "high": "Plan, cədvəl və detal sənin təbii dilindir. Başladığın işi sona qədər aparırsan.",
+      "mid": "Vacib işlərdə nizamlı, xırda şeylərdə rahatsan. Cədvəl var, amma müqəddəs deyil.",
+      "low": "Nizamdan çox spontanlığa güvənirsən. Çevik və uyğunlaşandır, lakin detal və son tarix əziyyət verir."
+    },
+    "N": {
+      "name": "Emosional həssaslıq",
+      "subtitle": "Neyrotizm",
+      "high": "Emosiyaların güclü və sürətlidir. Bu, həssaslıq və incə duyum verir, amma stress səni tez tutur.",
+      "mid": "Stressi hiss edirsən, lakin o sənə hakim olmur. Çətin gündən sonra tarazlığa qayıdırsan.",
+      "low": "Təzyiq altında sakit qalırsan. Böhranda soyuqqanlısan, bəzən isə başqalarının narahatlığını gec görürsən."
+    },
+    "O": {
+      "name": "Açıqlıq",
+      "subtitle": "Zehni maraq və təsəvvür",
+      "high": "Yeni ideya, mücərrəd fikir və təsəvvür səni cəlb edir. Sual vermək sənin üçün istirahətdir.",
+      "mid": "Yeniliyə açıqsan, amma sınanmışın da dəyərini bilirsən. Praktiki və maraqlı arasında balans saxlayırsan.",
+      "low": "Mücərrəd nəzəriyyədən çox konkret və sınanmış olanı seçirsən. Ayaqların yerdədir, diqqətin işə yönəlib."
+    }
+  },
+  "items": [
+    { "id": 1,  "trait": "E", "key":  1, "text": "Məclisin canı mənəm." },
+    { "id": 2,  "trait": "A", "key": -1, "text": "Başqalarının vəziyyəti məni az düşündürür." },
+    { "id": 3,  "trait": "C", "key":  1, "text": "Həmişə hazırlıqlı oluram." },
+    { "id": 4,  "trait": "N", "key":  1, "text": "Tez stress keçirirəm." },
+    { "id": 5,  "trait": "O", "key":  1, "text": "Söz ehtiyatım genişdir." },
+    { "id": 6,  "trait": "E", "key": -1, "text": "Az danışıram." },
+    { "id": 7,  "trait": "A", "key":  1, "text": "İnsanlar mənə maraqlıdır." },
+    { "id": 8,  "trait": "C", "key": -1, "text": "Əşyalarımı ortada qoyub gedirəm." },
+    { "id": 9,  "trait": "N", "key": -1, "text": "Vaxtımın çoxunda rahatam." },
+    { "id": 10, "trait": "O", "key": -1, "text": "Mücərrəd fikirləri anlamaq mənə çətin gəlir." },
+    { "id": 11, "trait": "E", "key":  1, "text": "İnsanların arasında özümü rahat hiss edirəm." },
+    { "id": 12, "trait": "A", "key": -1, "text": "İnsanları təhqir edirəm." },
+    { "id": 13, "trait": "C", "key":  1, "text": "Detallara diqqət yetirirəm." },
+    { "id": 14, "trait": "N", "key":  1, "text": "Hər şeyə görə narahat oluram." },
+    { "id": 15, "trait": "O", "key":  1, "text": "Təsəvvürüm canlıdır." },
+    { "id": 16, "trait": "E", "key": -1, "text": "Arxa planda qalmağı seçirəm." },
+    { "id": 17, "trait": "A", "key":  1, "text": "Başqalarının hisslərinə şərik oluram." },
+    { "id": 18, "trait": "C", "key": -1, "text": "İşləri qarışdırıram." },
+    { "id": 19, "trait": "N", "key": -1, "text": "Nadir hallarda qəmlənirəm." },
+    { "id": 20, "trait": "O", "key": -1, "text": "Mücərrəd ideyalar məni maraqlandırmır." },
+    { "id": 21, "trait": "E", "key":  1, "text": "Söhbətə mən başlayıram." },
+    { "id": 22, "trait": "A", "key": -1, "text": "Başqalarının problemləri məni maraqlandırmır." },
+    { "id": 23, "trait": "C", "key":  1, "text": "Gündəlik işləri dərhal görürəm." },
+    { "id": 24, "trait": "N", "key":  1, "text": "Asanlıqla hüzurumu itirirəm." },
+    { "id": 25, "trait": "O", "key":  1, "text": "Əla ideyalarım olur." },
+    { "id": 26, "trait": "E", "key": -1, "text": "Deməyə sözüm az olur." },
+    { "id": 27, "trait": "A", "key":  1, "text": "Ürəyim yumşaqdır." },
+    { "id": 28, "trait": "C", "key": -1, "text": "Əşyaları yerinə qoymağı çox vaxt yadımdan çıxarıram." },
+    { "id": 29, "trait": "N", "key":  1, "text": "Tez pərt oluram." },
+    { "id": 30, "trait": "O", "key": -1, "text": "Təsəvvür qabiliyyətim yaxşı deyil." },
+    { "id": 31, "trait": "E", "key":  1, "text": "Məclislərdə bir çox fərqli insanla danışıram." },
+    { "id": 32, "trait": "A", "key": -1, "text": "Əslində başqaları məni maraqlandırmır." },
+    { "id": 33, "trait": "C", "key":  1, "text": "Nizam-intizamı sevirəm." },
+    { "id": 34, "trait": "N", "key":  1, "text": "Əhvalım çox dəyişir." },
+    { "id": 35, "trait": "O", "key":  1, "text": "Yeni şeyləri tez qavrayıram." },
+    { "id": 36, "trait": "E", "key": -1, "text": "Diqqəti özümə çəkməyi xoşlamıram." },
+    { "id": 37, "trait": "A", "key":  1, "text": "Başqaları üçün vaxt ayırıram." },
+    { "id": 38, "trait": "C", "key": -1, "text": "Öhdəliklərimdən yayınıram." },
+    { "id": 39, "trait": "N", "key":  1, "text": "Əhval-ruhiyyəmdə kəskin dəyişikliklər olur." },
+    { "id": 40, "trait": "O", "key":  1, "text": "Çətin sözlərdən istifadə edirəm." },
+    { "id": 41, "trait": "E", "key":  1, "text": "Diqqət mərkəzində olmaq mənə əziyyət vermir." },
+    { "id": 42, "trait": "A", "key":  1, "text": "Başqalarının emosiyalarını duyuram." },
+    { "id": 43, "trait": "C", "key":  1, "text": "Cədvələ uyğun yaşayıram." },
+    { "id": 44, "trait": "N", "key":  1, "text": "Tez qıcıqlanıram." },
+    { "id": 45, "trait": "O", "key":  1, "text": "Hadisələr barədə düşünməyə vaxt ayırıram." },
+    { "id": 46, "trait": "E", "key": -1, "text": "Yad adamların yanında susuram." },
+    { "id": 47, "trait": "A", "key":  1, "text": "İnsanları rahatlaşdırmağı bacarıram." },
+    { "id": 48, "trait": "C", "key":  1, "text": "İşimdə dəqiqəm." },
+    { "id": 49, "trait": "N", "key":  1, "text": "Tez-tez qəmlənirəm." },
+    { "id": 50, "trait": "O", "key":  1, "text": "Başım ideya ilə doludur." }
+  ]
+}

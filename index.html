@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beş Faktor şəxsiyyət testi — azərbaycanca | SUALLAR</title>
+<meta name="description" content="Elmdə ən çox istifadə edilən şəxsiyyət modeli — Beş Faktor (Big Five) — tam azərbaycanca, 50 sual, pulsuz və qeydiyyatsız. Nəticən dərhal ekranda.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="az_AZ">
+<meta property="og:title" content="Beş Faktor şəxsiyyət testi — azərbaycanca">
+<meta property="og:description" content="50 sual, 6 dəqiqə. Elmi Big Five modeli, tam azərbaycanca. Pulsuz, qeydiyyatsız.">
+<meta property="og:image" content="og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <b>SUALLAR</b>
+    <span>şəxsiyyət və qavrayış testləri</span>
+  </header>
+
+  <!-- ------------------------------------------------------------- intro -->
+  <section id="s-intro" class="screen on">
+    <h1>Beş Faktor şəxsiyyət testi — tam azərbaycanca</h1>
+    <p class="lead">
+      Psixologiyada bugün ən çox istifadə edilən şəxsiyyət modeli budur: beş
+      əsas ölçü, hər biri müstəqil. 50 ifadəni oxu və hər birinin sənə nə qədər
+      uyğun olduğunu göstər.
+    </p>
+    <ul class="facts">
+      <li>50 sual · ~6 dəqiqə</li>
+      <li>Pulsuz, qeydiyyat yoxdur</li>
+      <li>Cavablar yalnız bu brauzerdə qalır</li>
+      <li>Açıq elmi instrument (IPIP)</li>
+    </ul>
+
+    <div class="card">
+      <h2 style="margin-top:0">Nə ölçülür</h2>
+      <p>
+        <b>Ekstraversiya</b> — enerjini insanlardan, yoxsa təklikdən alırsan.
+        <b>Uzlaşma</b> — empatiya və münasibətdə yumşaqlıq.
+        <b>Məsuliyyət</b> — nizam, plan və özünüidarə.
+        <b>Emosional həssaslıq</b> — stressə və əhval dəyişməsinə həssaslıq.
+        <b>Açıqlıq</b> — yeni ideya, mücərrəd fikir və təsəvvürə maraq.
+      </p>
+      <p class="meta">
+        Burada «yaxşı» və «pis» nəticə yoxdur — beş ölçünün hər biri üzrə həm
+        yuxarı, həm aşağı ucun öz gücü və öz bədəli var.
+      </p>
+      <div class="actions">
+        <button class="btn" id="start">Testə başla</button>
+        <button class="btn ghost" id="resume" hidden>Yarımçıq testi davam et</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- -------------------------------------------------------------- test -->
+  <section id="s-test" class="screen">
+    <div class="progress">
+      <div class="row">
+        <span id="p-label">1–5 / 50</span>
+        <span id="p-pct">0%</span>
+      </div>
+      <div class="track"><i id="p-fill"></i></div>
+    </div>
+
+    <div id="q-host"></div>
+
+    <div class="nav">
+      <button class="btn ghost" id="prev">Geri</button>
+      <span class="hint" id="nav-hint"></span>
+      <button class="btn" id="next" disabled>Növbəti</button>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------ result -->
+  <section id="s-result" class="screen">
+    <h1 id="r-title">Sənin beş ölçün</h1>
+    <p class="lead" id="r-lead"></p>
+    <p class="meta" id="r-shared" hidden>
+      Bu, kiminsə səninlə paylaşdığı nəticədir. Öz nəticəni görmək üçün aşağıdan
+      testə başla — 50 sual, ~6 dəqiqə.
+    </p>
+
+    <div class="card">
+      <div class="bars" id="r-bars"></div>
+    </div>
+
+    <div class="honesty">
+      <p>
+        <b>Bu faizlər nəyi göstərir:</b> hər bal sənin cavablarının o ölçüdəki
+        şkalada tutduğu yerdir (10 ifadə × 1–5 bal). Bu, <b>Azərbaycan əhalisi
+        üzrə norma deyil</b> — AZ norması hələ toplanmır, ona görə səni «100
+        nəfərdən N-ci» kimi göstərmirik. Belə bir rəqəm görsən, o uydurmadır.
+      </p>
+      <p>
+        Instrument: <b>IPIP Big-Five Factor Markers</b> (Goldberg, 1992) —
+        ictimai mülkiyyət, azərbaycancaya bizim tərcüməmizdə. Bu, tibbi
+        diaqnoz və ya peşə seçimi aləti deyil.
+      </p>
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="make-card">Paylaşım şəkli yarat</button>
+      <button class="btn ghost" id="copy-link">Nəticə linkini kopyala</button>
+      <button class="btn ghost" id="again">Yenidən başla</button>
+    </div>
+    <canvas id="share-card" width="1080" height="1350" aria-label="Nəticə kartı"></canvas>
+  </section>
+
+  <footer class="foot">
+    SUALLAR · <span id="year"></span> — sual vermək bir bacarıqdır.
+    Instrument: <a href="https://ipip.ori.org/" rel="noopener noreferrer" target="_blank">IPIP</a>, ictimai mülkiyyət.
+  </footer>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
