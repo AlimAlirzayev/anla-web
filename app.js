@@ -1,4 +1,4 @@
-/* SUALLAR — Big Five (IPIP-50) test runner.
+/* ANLA — Big Five (IPIP-50) test runner.
    No build step, no framework, no network beyond the question file. Answers
    never leave the browser: progress lives in localStorage, a shared result
    travels in the URL hash and carries scores only, never item answers. */
@@ -6,7 +6,7 @@
 'use strict';
 
 const PER_PAGE = 5;
-const STORE = 'suallar.bigfive.v1';
+const STORE = 'anla.bigfive.v1';
 const TRAIT_ORDER = ['E', 'A', 'C', 'N', 'O'];
 
 const $ = (sel) => document.querySelector(sel);
@@ -195,7 +195,7 @@ function drawCard(scores) {
 
   g.fillStyle = token('--ink-faint');
   g.font = '600 30px ' + token('--font');
-  g.fillText('SUALLAR', 80, 120);
+  g.fillText('ANLA', 80, 120);
 
   g.fillStyle = token('--ink');
   g.font = '700 76px ' + token('--font');
@@ -329,7 +329,7 @@ async function boot() {
       if (!blob) { flash(btn, 'Şəkil yaradılmadı'); return; }
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'suallar-bes-faktor.png';
+      a.download = 'anla-bes-faktor.png';
       a.click();
       URL.revokeObjectURL(a.href);
       flash(btn, 'Şəkil endirildi ✓');
