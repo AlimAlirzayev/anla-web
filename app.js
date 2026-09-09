@@ -96,6 +96,9 @@ function renderPage() {
         save();
         syncNav();
       });
+      // The visible cap is the short form; assistive tech gets the full anchor,
+      // because "Heç" on its own does not say what it is short for.
+      input.setAttribute('aria-label', label);
       lab.append(input, el('span', 'dot'), el('span', 'cap', DATA.scale.short[idx]));
       lab.title = label;
       group.append(lab);
@@ -103,6 +106,9 @@ function renderPage() {
     q.append(group);
     host.append(q);
   }
+
+  $('#lg-lo').textContent = `← ${DATA.scale.labels[0]}`;
+  $('#lg-hi').textContent = `${DATA.scale.labels[DATA.scale.labels.length - 1]} →`;
 
   const first = page * PER_PAGE + 1;
   const last = Math.min((page + 1) * PER_PAGE, DATA.items.length);

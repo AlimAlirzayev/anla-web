@@ -6,14 +6,15 @@
   "scale": {
     "min": 1,
     "max": 5,
+    "note": "IPIP's own anchors are ACCURACY, not agreement: a statement about yourself is not true or false, it fits you more or less. The Azerbaijani wording keeps IPIP's symmetry — absolute ends (heç/tam) around moderate steps (az/çox) around an explicit midpoint.",
     "labels": [
-      "Tamamilə yanlışdır",
-      "Bir qədər yanlışdır",
-      "Nə doğru, nə yanlış",
-      "Bir qədər doğrudur",
-      "Tamamilə doğrudur"
+      "Mənə heç uyğun deyil",
+      "Mənə az uyğundur",
+      "Nə uyğundur, nə uyğun deyil",
+      "Mənə çox uyğundur",
+      "Mənə tam uyğundur"
     ],
-    "short": ["Yanlış", "Az yanlış", "Ortada", "Az doğru", "Doğru"]
+    "short": ["Heç", "Az", "Ortada", "Çox", "Tam"]
   },
   "traits": {
     "E": {
@@ -66,7 +67,7 @@
     { "id": 11, "trait": "E", "key":  1, "text": "İnsanların arasında özümü rahat hiss edirəm." },
     { "id": 12, "trait": "A", "key": -1, "text": "İnsanları təhqir edirəm." },
     { "id": 13, "trait": "C", "key":  1, "text": "Detallara diqqət yetirirəm." },
-    { "id": 14, "trait": "N", "key":  1, "text": "Hər şeyə görə narahat oluram." },
+    { "id": 14, "trait": "N", "key":  1, "text": "Çox şeyə görə narahat oluram." },
     { "id": 15, "trait": "O", "key":  1, "text": "Təsəvvürüm canlıdır." },
     { "id": 16, "trait": "E", "key": -1, "text": "Arxa planda qalmağı seçirəm." },
     { "id": 17, "trait": "A", "key":  1, "text": "Başqalarının hisslərinə şərik oluram." },
@@ -76,7 +77,7 @@
     { "id": 21, "trait": "E", "key":  1, "text": "Söhbətə mən başlayıram." },
     { "id": 22, "trait": "A", "key": -1, "text": "Başqalarının problemləri məni maraqlandırmır." },
     { "id": 23, "trait": "C", "key":  1, "text": "Gündəlik işləri dərhal görürəm." },
-    { "id": 24, "trait": "N", "key":  1, "text": "Asanlıqla hüzurumu itirirəm." },
+    { "id": 24, "trait": "N", "key":  1, "text": "Asanlıqla rahatlığımı itirirəm." },
     { "id": 25, "trait": "O", "key":  1, "text": "Əla ideyalarım olur." },
     { "id": 26, "trait": "E", "key": -1, "text": "Deməyə sözüm az olur." },
     { "id": 27, "trait": "A", "key":  1, "text": "Ürəyim yumşaqdır." },
