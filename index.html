@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Beş Faktor şəxsiyyət testi — azərbaycanca | ANLA</title>
-<meta name="description" content="Elmdə ən çox istifadə edilən şəxsiyyət modeli — Beş Faktor (Big Five) — tam azərbaycanca, 50 sual, pulsuz və qeydiyyatsız. Nəticən dərhal ekranda.">
+<meta name="description" content="Elmdə ən çox istifadə edilən şəxsiyyət modeli — Beş Faktor (Big Five) — tam azərbaycanca, 20 və ya 50 sual, pulsuz və qeydiyyatsız. Nəticən dərhal ekranda.">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="az_AZ">
 <meta property="og:title" content="Beş Faktor şəxsiyyət testi — azərbaycanca">
-<meta property="og:description" content="50 sual, 6 dəqiqə. Elmi Big Five modeli, tam azərbaycanca. Pulsuz, qeydiyyatsız.">
+<meta property="og:description" content="20 və ya 50 sual, 2–6 dəqiqə. Elmi Big Five modeli, tam azərbaycanca. Pulsuz, qeydiyyatsız.">
 <meta property="og:image" content="og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,11 +30,11 @@
     <h1>Beş Faktor şəxsiyyət testi — tam azərbaycanca</h1>
     <p class="lead">
       Psixologiyada bugün ən çox istifadə edilən şəxsiyyət modeli budur: beş
-      əsas ölçü, hər biri müstəqil. 50 ifadəni oxu və hər birinin sənə nə qədər
+      əsas ölçü, hər biri müstəqil. İfadələri oxu və hər birinin sənə nə qədər
       uyğun olduğunu göstər.
     </p>
     <ul class="facts">
-      <li>50 sual · ~6 dəqiqə</li>
+      <li>20 və ya 50 sual · 2–6 dəqiqə</li>
       <li>Pulsuz, qeydiyyat yoxdur</li>
       <li>Cavablar yalnız bu brauzerdə qalır</li>
       <li>Açıq elmi instrument (IPIP)</li>
@@ -60,8 +60,21 @@
         Burada «yaxşı» və «pis» nəticə yoxdur — beş ölçünün hər biri üzrə həm
         yuxarı, həm aşağı ucun öz gücü və öz bədəli var.
       </p>
+      <h2>İki uzunluq var</h2>
+      <p>
+        Hər ikisi eyni beş ölçünü verir. Fərq dəqiqlikdədir: bir ölçünü nə qədər
+        çox ifadə ilə soruşsan, nəticə bir o qədər dayanıqlı olur.
+      </p>
       <div class="actions">
-        <button class="btn" id="start">Testə başla</button>
+        <button class="btn" id="start-mini">Qısa test — 20 sual · ~2 dəq</button>
+        <button class="btn ghost" id="start-full">Tam test — 50 sual · ~6 dəq</button>
+      </div>
+      <p class="meta" style="margin-top:14px">
+        Qısa versiya <b>Mini-IPIP</b>-dir (Donnellan və b., 2006) — uydurulmuş
+        qısaltma yox, elmi ədəbiyyatda ayrıca yoxlanılmış 20 ifadəlik dəst.
+        Tələsirsənsə ondan başla; nəticəni dəqiqləşdirmək istəyəndə tam versiyanı keç.
+      </p>
+      <div class="actions">
         <button class="btn ghost" id="resume" hidden>Yarımçıq testi davam et</button>
       </div>
     </div>
@@ -75,12 +88,6 @@
         <span id="p-pct">0%</span>
       </div>
       <div class="track"><i id="p-fill"></i></div>
-      <!-- The short caps under each dot cannot carry direction on their own, and
-           a title attribute never appears on a phone. The two ends stay visible. -->
-      <div class="legend">
-        <span id="lg-lo"></span>
-        <span id="lg-hi"></span>
-      </div>
     </div>
 
     <div id="q-host"></div>
@@ -98,7 +105,7 @@
     <p class="lead" id="r-lead"></p>
     <p class="meta" id="r-shared" hidden>
       Bu, kiminsə səninlə paylaşdığı nəticədir. Öz nəticəni görmək üçün aşağıdan
-      testə başla — 50 sual, ~6 dəqiqə.
+      testə başla — 20 sualla 2 dəqiqəyə də olar.
     </p>
 
     <div class="card">
@@ -106,16 +113,17 @@
     </div>
 
     <div class="honesty">
+      <p id="r-form"></p>
       <p>
         <b>Bu faizlər nəyi göstərir:</b> hər bal sənin cavablarının o ölçüdəki
-        şkalada tutduğu yerdir (10 ifadə × 1–5 bal). Bu, <b>Azərbaycan əhalisi
-        üzrə norma deyil</b> — AZ norması hələ toplanmır, ona görə səni «100
-        nəfərdən N-ci» kimi göstərmirik. Belə bir rəqəm görsən, o uydurmadır.
+        şkalada tutduğu yerdir. Bu, <b>Azərbaycan əhalisi üzrə norma deyil</b> —
+        AZ norması hələ toplanmır, ona görə səni «100 nəfərdən N-ci» kimi
+        göstərmirik. Belə bir rəqəm görsən, o uydurmadır.
       </p>
+      <p id="r-instrument"></p>
       <p>
-        Instrument: <b>IPIP Big-Five Factor Markers</b> (Goldberg, 1992) —
-        ictimai mülkiyyət, azərbaycancaya bizim tərcüməmizdə. Bu, tibbi
-        diaqnoz və ya peşə seçimi aləti deyil.
+        Hər iki versiya ictimai mülkiyyətdədir, azərbaycancaya bizim
+        tərcüməmizdə. Bu, tibbi diaqnoz və ya peşə seçimi aləti deyil.
       </p>
     </div>
 

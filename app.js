@@ -20,7 +20,13 @@ const el = (tag, cls, text) => {
 let DATA = null;
 let answers = {};       // item id -> 1..5
 let page = 0;
+let form = 'full';      // 'full' = IPIP-50, 'mini' = the published Mini-IPIP 20
 let sharedView = false; // true when the page is showing someone else's result
+
+// Mini-IPIP is a PUBLISHED subset, flagged per item — never "the first twenty",
+// which would destroy the balance of positively and negatively keyed items.
+const items = () => (form === 'mini' ? DATA.items.filter((i) => i.mini) : DATA.items);
+const pageCount = () => Math.ceil(items().length / PER_PAGE);
 
 /* ----------------------------------------------------------------- scoring */
 
@@ -29,15 +35,17 @@ let sharedView = false; // true when the page is showing someone else's result
 function score(all) {
   const out = {};
   for (const t of TRAIT_ORDER) {
-    const items = DATA.items.filter((i) => i.trait === t);
+    const mine = items().filter((i) => i.trait === t);
     let raw = 0;
-    for (const item of items) {
+    for (const item of mine) {
       const a = all[item.id];
       if (!a) return null;                       // incomplete -> no score
       raw += item.key === 1 ? a : (DATA.scale.max + DATA.scale.min) - a;
     }
-    const lo = items.length * DATA.scale.min;
-    const hi = items.length * DATA.scale.max;
+    // Bounds come from the item count in play, so the short form scores on its
+    // own range instead of being scaled against fifty answers it never asked.
+    const lo = mine.length * DATA.scale.min;
+    const hi = mine.length * DATA.scale.max;
     out[t] = Math.round(((raw - lo) / (hi - lo)) * 100);
   }
   return out;
@@ -49,7 +57,7 @@ const levelOf = (pct) => (pct >= 65 ? 'high' : pct <= 35 ? 'low' : 'mid');
 
 function save() {
   try {
-    localStorage.setItem(STORE, JSON.stringify({ answers, page, at: Date.now() }));
+    localStorage.setItem(STORE, JSON.stringify({ answers, page, form, at: Date.now() }));
   } catch { /* private mode — the test still works, it just won't resume */ }
 }
 
@@ -70,9 +78,12 @@ function show(id) {
 }
 
 function renderPage() {
+  // Any pending auto-advance dies here. Without this, pressing "Növbəti" while
+  // the timer was still running advanced twice and skipped five questions.
+  clearTimeout(advanceTimer);
   const host = $('#q-host');
   host.textContent = '';
-  const slice = DATA.items.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
+  const slice = items().slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
 
   for (const item of slice) {
     const q = el('div', 'q');
@@ -95,6 +106,7 @@ function renderPage() {
         answers[item.id] = value;
         save();
         syncNav();
+        maybeAdvance();
       });
       // The visible cap is the short form; assistive tech gets the full anchor,
       // because "Heç" on its own does not say what it is short for.
@@ -107,31 +119,43 @@ function renderPage() {
     host.append(q);
   }
 
-  $('#lg-lo').textContent = `← ${DATA.scale.labels[0]}`;
-  $('#lg-hi').textContent = `${DATA.scale.labels[DATA.scale.labels.length - 1]} →`;
-
   const first = page * PER_PAGE + 1;
-  const last = Math.min((page + 1) * PER_PAGE, DATA.items.length);
-  $('#p-label').textContent = `${first}–${last} / ${DATA.items.length}`;
+  const last = Math.min((page + 1) * PER_PAGE, items().length);
+  $('#p-label').textContent = `${first}–${last} / ${items().length}`;
   const done = Object.keys(answers).length;
-  const pct = Math.round((done / DATA.items.length) * 100);
+  const pct = Math.round((done / items().length) * 100);
   $('#p-pct').textContent = `${pct}%`;
   $('#p-fill').style.width = `${pct}%`;
   $('#prev').disabled = page === 0;
   syncNav();
 }
 
+// Fifty items is ten button presses on top of fifty taps. When a page is
+// complete the next one comes on its own, after a beat long enough to change
+// your mind. Never on the last page: seeing your result should be deliberate.
+let advanceTimer = null;
+function maybeAdvance() {
+  clearTimeout(advanceTimer);
+  const slice = items().slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
+  const isLast = (page + 1) * PER_PAGE >= items().length;
+  if (isLast || slice.some((i) => !answers[i.id])) return;
+  advanceTimer = setTimeout(() => {
+    if (!$('#s-test').classList.contains('on')) return;
+    page++; save(); renderPage();
+  }, 650);
+}
+
 function syncNav() {
-  const slice = DATA.items.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
+  const slice = items().slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
   const missing = slice.filter((i) => !answers[i.id]).length;
-  const isLast = (page + 1) * PER_PAGE >= DATA.items.length;
+  const isLast = (page + 1) * PER_PAGE >= items().length;
   $('#next').disabled = missing > 0;
   $('#next').textContent = isLast ? 'Nəticəmi göstər' : 'Növbəti';
   $('#nav-hint').textContent = missing > 0
     ? `${missing} ifadə cavabsızdır`
     : (isLast ? 'Hamısı hazırdır' : '');
   const done = Object.keys(answers).length;
-  const pct = Math.round((done / DATA.items.length) * 100);
+  const pct = Math.round((done / items().length) * 100);
   $('#p-pct').textContent = `${pct}%`;
   $('#p-fill').style.width = `${pct}%`;
 }
@@ -149,6 +173,13 @@ function renderResult(scores, { shared = false } = {}) {
   $('#r-lead').textContent =
     `${whose} — ${DATA.traits[top].name.toLowerCase()}. `
     + 'Aşağıda beşinin hamısı var; heç biri təkbaşına səni izah etmir.';
+
+  // The result must say which form produced it — a 20-item score and a 50-item
+  // score look identical on screen and are not equally precise.
+  const spec = DATA.forms[form];
+  $('#r-form').innerHTML =
+    `<b>${spec.name} versiya (${spec.items} ifadə):</b> ${spec.precision}`;
+  $('#r-instrument').textContent = `Instrument: ${spec.instrument}.`;
 
   for (const t of TRAIT_ORDER) {
     const pct = scores[t];
@@ -175,11 +206,13 @@ function renderResult(scores, { shared = false } = {}) {
 /* ---------------------------------------------------------- share + linking */
 
 // #r=E62A78C55N40O88 — scores only. Short enough to survive every messenger.
-const encodeScores = (s) => 'r=' + TRAIT_ORDER.map((t) => t + String(s[t]).padStart(2, '0')).join('');
+const encodeScores = (s) => 'r=' + TRAIT_ORDER.map((t) => t + String(s[t]).padStart(2, '0')).join('')
+  + (form === 'mini' ? 'f=m' : 'f=f');
 
 function decodeScores(hash) {
   const m = /r=((?:[EACNO]\d{2}){5})/.exec(hash || '');
   if (!m) return null;
+  form = /f=m/.test(hash) ? 'mini' : 'full';
   const out = {};
   for (const [, t, v] of m[1].matchAll(/([EACNO])(\d{2})/g)) out[t] = Number(v);
   return TRAIT_ORDER.every((t) => t in out) ? out : null;
@@ -210,7 +243,9 @@ function drawCard(scores) {
 
   g.fillStyle = token('--ink-soft');
   g.font = '400 32px ' + token('--font');
-  g.fillText('50 sual · tam azərbaycanca', 80, 400);
+  // The card is shared without context, so it must not imply a precision the
+  // answers behind it never had.
+  g.fillText(`${DATA.forms[form].items} sual · tam azərbaycanca`, 80, 400);
 
   let y = 520;
   for (const t of TRAIT_ORDER) {
@@ -285,18 +320,22 @@ async function boot() {
   if (saved) {
     const btn = $('#resume');
     btn.hidden = false;
-    btn.textContent = `Yarımçıq testi davam et (${Object.keys(saved.answers).length}/${DATA.items.length})`;
+    form = saved.form === 'mini' ? 'mini' : 'full';
+    btn.textContent = `Yarımçıq testi davam et (${Object.keys(saved.answers).length}/${items().length})`;
     btn.addEventListener('click', () => {
+      form = saved.form === 'mini' ? 'mini' : 'full';
       answers = saved.answers;
-      page = Math.min(saved.page || 0, Math.ceil(DATA.items.length / PER_PAGE) - 1);
+      page = Math.min(saved.page || 0, pageCount() - 1);
       show('s-test'); renderPage();
     });
   }
 
-  $('#start').addEventListener('click', () => {
-    answers = {}; page = 0; save();
-    show('s-test'); renderPage();
-  });
+  for (const [id, chosen] of [['start-mini', 'mini'], ['start-full', 'full']]) {
+    $(`#${id}`).addEventListener('click', () => {
+      form = chosen; answers = {}; page = 0; save();
+      show('s-test'); renderPage();
+    });
+  }
 
   $('#prev').addEventListener('click', () => {
     if (page === 0) return;
@@ -304,7 +343,7 @@ async function boot() {
   });
 
   $('#next').addEventListener('click', () => {
-    const isLast = (page + 1) * PER_PAGE >= DATA.items.length;
+    const isLast = (page + 1) * PER_PAGE >= items().length;
     if (!isLast) { page++; save(); renderPage(); return; }
     const scores = score(answers);
     if (!scores) { syncNav(); return; }
@@ -320,7 +359,7 @@ async function boot() {
     $('#share-card').classList.remove('on');
     // Arriving from a friend's link, the visitor already knows what this is —
     // send them straight into the questions instead of back to the pitch.
-    if (cameFromShare) { save(); show('s-test'); renderPage(); return; }
+    if (cameFromShare) { form = 'full'; save(); show('s-test'); renderPage(); return; }
     show('s-intro');
   });
 
@@ -357,7 +396,7 @@ async function boot() {
     if (!$('#s-test').classList.contains('on')) return;
     const n = Number(ev.key);
     if (!(n >= DATA.scale.min && n <= DATA.scale.max)) return;
-    const slice = DATA.items.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
+    const slice = items().slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
     const next = slice.find((i) => !answers[i.id]);
     if (!next) return;
     const input = document.querySelector(`input[name="q${next.id}"][value="${n}"]`);
